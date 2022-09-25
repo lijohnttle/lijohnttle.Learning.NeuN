@@ -24,7 +24,7 @@ namespace lijohnttle.Learning.NeuN.Core.Internal
                 outputs.Add(actualOutputs);
             }
 
-            return outputs;
+            return outputs.ToArray();
         }
     }
 }

@@ -32,14 +32,16 @@ namespace lijohnttle.Learning.NeuN.Core.Internal
 
                 var errors = i == weightsLayers.Length - 1
                     ? finalErrors
-                    : weightsLayers[i].Transpose() * previousErrros;
+                    : weightsLayers[i + 1].Transpose() * previousErrros;
 
-                newWeightsLayers[i] += ComputeWeightsDelta(learningRate, errors, currentLayerOutput, previousLayerOutput);
+                var weightsDelta = ComputeWeightsDelta(learningRate, errors, currentLayerOutput, previousLayerOutput);
+
+                newWeightsLayers[i] += weightsDelta;
 
                 previousErrros = errors;
             }
 
-            return weightsLayers;
+            return newWeightsLayers;
         }
 
 
