@@ -6,13 +6,12 @@ using MathNet.Numerics.Random;
 
 namespace lijohnttle.Learning.NeuN.Core
 {
-    public class NeuralNetwork
+    public class NeuralNetwork : INeuralNetwork
     {
-        private readonly Matrix<double> inputToHiddenWeights;
-        private readonly Matrix<double> hiddenToOutputWeights;
         private readonly IQueryProcessor queryProcessor = QueryProcessor.Default;
         private readonly INetworkTrainer networkTrainer = NetworkTrainer.Default;
         private readonly Func<double, double> activationFunction = SpecialFunctions.Logistic;
+
         private Matrix<double>[] weightsLayers;
 
 
@@ -27,17 +26,10 @@ namespace lijohnttle.Learning.NeuN.Core
             OutputLayerSize = outputLayerSize;
             LearningRate = learningRate;
 
-            var M = Matrix<double>.Build;
-
-            inputToHiddenWeights = M.Random(hiddenLayerSize, inputLayerSize,
-                new Normal(0, Math.Pow(hiddenLayerSize, -0.5), SystemRandomSource.Default));
-            hiddenToOutputWeights = M.Random(outputLayerSize, hiddenLayerSize,
-                new Normal(0, Math.Pow(outputLayerSize, -0.5), SystemRandomSource.Default));
-
             weightsLayers = new[]
             {
-                inputToHiddenWeights,
-                hiddenToOutputWeights
+                CreateWeightsMatrix(hiddenLayerSize, inputLayerSize),   // input to hidden layer
+                CreateWeightsMatrix(outputLayerSize, hiddenLayerSize)   // hidden to output layer
             };
         }
 
@@ -65,11 +57,14 @@ namespace lijohnttle.Learning.NeuN.Core
             
             var V = Vector<double>.Build;
 
-            var inputsVector = V.DenseOfArray(inputs);
-            var targetsVector = V.DenseOfArray(targets);
-
             this.weightsLayers = this.networkTrainer
-                .Train(inputsVector, targetsVector, this.weightsLayers, this.LearningRate, this.activationFunction, this.queryProcessor);
+                .Train(
+                    V.DenseOfArray(inputs),
+                    V.DenseOfArray(targets),
+                    this.weightsLayers,
+                    this.LearningRate,
+                    this.activationFunction,
+                    this.queryProcessor);
         }
 
         public double[] Query(double[] inputs)
@@ -81,12 +76,22 @@ namespace lijohnttle.Learning.NeuN.Core
 
             var V = Vector<double>.Build;
 
-            var inputsVector = V.DenseOfArray(inputs);
-
             return this.queryProcessor
-                .Query(inputsVector, this.weightsLayers, this.activationFunction)
+                .Query(
+                    V.DenseOfArray(inputs),
+                    this.weightsLayers,
+                    this.activationFunction)
                 .Last()
                 .ToArray();
+        }
+
+
+        private static Matrix<double> CreateWeightsMatrix(int rows, int columns)
+        {
+            var M = Matrix<double>.Build;
+
+            return M.Random(rows, columns,
+                new Normal(0, Math.Pow(rows, -0.5), SystemRandomSource.Default));
         }
     }
 }
