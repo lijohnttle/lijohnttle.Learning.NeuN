@@ -10,7 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lijohnttle.Learning.NeuN.Demo", "lijohnttle.Learning.NeuN.Demo\lijohnttle.Learning.NeuN.Demo.csproj", "{3DCED63A-4279-44F9-8CA6-AD5AD4B191FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lijohnttle.Learning.NeuN.DigitsRecognitionDemo", "lijohnttle.Learning.NeuN.DigitsRecognitionDemo\lijohnttle.Learning.NeuN.DigitsRecognitionDemo.csproj", "{D17A3F3F-843D-4486-873E-6671184A2A98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,10 +22,10 @@ Global
 		{6B7B88B0-7258-4F6D-8666-1BCA8C341E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B7B88B0-7258-4F6D-8666-1BCA8C341E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B7B88B0-7258-4F6D-8666-1BCA8C341E36}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DCED63A-4279-44F9-8CA6-AD5AD4B191FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DCED63A-4279-44F9-8CA6-AD5AD4B191FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DCED63A-4279-44F9-8CA6-AD5AD4B191FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DCED63A-4279-44F9-8CA6-AD5AD4B191FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D17A3F3F-843D-4486-873E-6671184A2A98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D17A3F3F-843D-4486-873E-6671184A2A98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D17A3F3F-843D-4486-873E-6671184A2A98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D17A3F3F-843D-4486-873E-6671184A2A98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
